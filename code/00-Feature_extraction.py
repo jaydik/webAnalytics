@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn.externals import joblib
 from sklearn.cross_validation import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
