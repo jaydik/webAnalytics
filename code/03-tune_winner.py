@@ -1,4 +1,3 @@
-import numpy as np
 from sklearn.linear_model import SGDClassifier
 from time import time
 from sklearn.externals import joblib
