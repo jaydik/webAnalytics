@@ -1,0 +1,76 @@
+\documentclass[11pt]{beamer}
+\usetheme{PaloAlto}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Jon Dickerson}
+\title{News Category Prediction}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+\institute{Stevens Institute of Technology} 
+\date{2016-12-06} 
+\subject{Web Analytics} 
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Introduction}
+	The dataset I chose to analyze was Kaggle's News Aggregator Dataset.\footnote{https://www.kaggle.com/uciml/news-aggregator-dataset} It contains "headlines and categories of 400k news stories from 2014". The goal of this project is to attempt to predict the category of a news story given its headline.
+\end{frame}
+
+\section{Data Structure}
+\begin{frame}{Data Structure}
+	The columns included in this dataset are:
+	\begin{itemize}
+		\item[-] ID : the numeric ID of the article
+		\item[-] TITLE : the headline of the article
+		\item[-] URL : the URL of the article
+		\item[-] PUBLISHER : the publisher of the article
+		\item[-] CATEGORY : the category of the news item; one of:
+			\begin{itemize}
+				\item[-] b: business
+				\item[-] t: science and technology
+				\item[-] e: entertainment
+				\item[-] m: health
+			\end{itemize}
+		\item[-] STORY : alphanumeric ID of the news story that the article discusses
+		\item[-] HOSTNAME : hostname where the article was posted
+		\item[-] TIMESTAMP : approximate timestamp of the article's publication
+	\end{itemize}
+\end{frame}
+
+\section{Code}
+\begin{frame}{Code Plan}
+	The code consists of a few small scripts for ease of use:
+	\begin{itemize}
+		\item[-] \textit{00-feature\_extraction.py}: stem and vectorize the headlines
+		\item[-] \textit{01-build\_models.py}: train a few models to compare performance
+		\item[-] \textit{02-evaluate\_models.py}: evaluate the above models
+		\item[-] \textit{03-tune\_winner.py}: take the model with the best baseline performance and tune it using grid search
+		\item[-] \textit{04-evaluate\_winner.py}: rerun the evaluation on the tuned model
+	\end{itemize}
+\end{frame}
+
+\section{Results}
+\begin{frame}{Results}
+	The winning model was a linear support vector machine with gradient descent. The final confusion matrix is given below.
+\[
+	\begin{bmatrix}
+		26,832 & 486 & 231 & 1535 \\ 
+		453 & 37,170 & 120 & 296 \\
+		475 & 322 & 10,543 & 156 \\
+		1430 & 489 & 126 & 24,941
+	\end{bmatrix}
+\]
+\end{frame}
+
+\end{document}
